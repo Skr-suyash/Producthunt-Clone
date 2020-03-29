@@ -1,0 +1,50 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <title>Product Hunt</title>
+  </head>
+  <body>
+    
+    <!-- --------------  NAVBAR --------------->
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+      <a class="navbar-brand" href="{% url 'home' %}">
+        <img src="{% static 'images/logo.png' %}" alt="Cannot display image">
+      </a>
+      <h4>Product Hunt </h4>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <div class="navbar-nav ml-auto">
+            <a class="navbar-brand" href="#">Sign Up</a>
+            <a class="navbar-brand" href="#">Login</a>
+          </div>
+      </div>
+    </div>
+    </nav>
+    {% block body %}
+
+    {% endblock %}
+
+
+    <!-- --------------  FOOTER ------------------->
+
+    <footer style="color: black; text-align: center; background-color: #494949; color: cornsilk; padding: 4em;">
+      
+      <h5><p>&copy;	ProductHunt {% now "Y" %}</p></h5>
+    </footer>
+
+  </body>
+</html>
