@@ -8,16 +8,24 @@
 
 {% block body %}
 
+{% if error %}
+<script>
+  alert("{{error}}");
+</script>
+{% endif %}
+
 <div class="login-page">
     <div class="form">
-      <form class="register-form">
-        <input type="text" placeholder="name"/>
-        <input type="password" placeholder="password"/>
-        <input type="text" placeholder="email address"/>
+      <form class="register-form" action="{% url 'signup' %}" method="POST">
+        {% csrf_token %}
+        <input type="text" placeholder="name" name="username"/>
+        <input type="password" placeholder="password" name="password1"/>
+        <input type="password" placeholder="confirm password" name="password2"/>
         <button>create</button>
-        <p class="message">Already registered? <a href="#">Sign In</a></p>
+        <p class="message">Already registered? <a href="#" class="small_link">Sign In</a></p>
       </form>
     </div>
   </div>
+
 
 {% endblock %}
