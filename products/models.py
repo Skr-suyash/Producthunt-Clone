@@ -10,7 +10,6 @@ class Product(models.Model):
     image = models.ImageField(upload_to='images/')
     icon = models.ImageField(upload_to='images/')
     total_votes = models.IntegerField(default=1)
-
     hunter = models.ForeignKey(to=User, on_delete=models.CASCADE)
 
     def __str__(self):

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block custom_css %} <link href="{% static 'css/create.css' %}" rel="stylesheet"> {% endblock %}
+
+{% block title %} Add Product {% endblock %}
+
+{% block body %}
+
+{% if error %}
+<script>
+  alert("{{error}}");
+</script>
+{% endif %}
+
+<h2>Create Product</h2>
+
+<div class="login-page">
+    <div class="form">
+      <form class="register-form" action="{% url 'create' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h6>Product Title : </h6> <input type="text" placeholder="Title" name="title" required>
+        <br><br>
+        <h6>Description : </h6>
+        <textarea rows="5" cols="70" name="description" placeholder="description" required></textarea>
+        <br><br>
+        <h6>URL : </h6> <input type="url" placeholder="URL" name="url" required>
+        <br><br>
+        <h6>Icon : </h6> <input type="file" name="icon" required>
+        <br><br>
+        <h6>Product Image : </h6> <input type="file" name="image" required>
+        <br><br>
+        <button class="btn btn-primary mybutton" type="submit" value="submit" style="width: 8em; font-size: large;"> Submit</button>
+      </form>
+    </div>
+  </div>
+
+
+{% endblock %}
