@@ -3,4 +3,5 @@ import products.views
 
 urlpatterns = [
     path('create', products.views.create, name='create'),
+    path('<int:product_id>', products.views.detail, name='detail'),
 ]
