@@ -1,1 +1,72 @@
-{{product.title}}
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %} Sign Up {% endblock %}
+
+{% block body %}
+
+{% if error %}
+<script>
+  alert("{{error}}");
+</script>
+{% endif %}
+
+<div class="row" style="margin: 15px;">
+    <div class="col-2">
+        <img src="{{product.icon.url}}" class="img-fluid img-thumbnail" height="150px" width="150px">
+    </div>
+    <div class="col-10">
+        <h1 style= "margin-top: 20px;"><a href="{{product.url}}" style="color: red; text-decoration: none;">{{product.title}}</h1></a>
+    </div>
+</div>
+ 
+<div class="row" style="padding: 35px;">
+    <div class="col-8">
+        <img src="{{product.image.url}}" class="img-fluid">
+    </div>
+    <div class="col-4 my-auto" style= "text-align: center;">
+        <button id="vote_button" class="btn btn-danger" style="width: 80%; margin-bottom: 40px;"><span class="fa fa-thumbs-up"></span>  Upvote <span id="vote_span" style="margin-left: 15px; font-weight: 800;">{{product.total_votes}}</span></button>
+        <h4 style="margin-bottom: 40px;">Created by {{product.hunter}}</h4>
+        <button class="btn btn-primary" style="width: 60%; margin-bottom: 40px;" onclick="location.href='{{product.url}}'">Website</button>
+        <h6>{{product.pub_date_pretty}}</h6>
+    </div>
+</div>
+
+<div class="row" style="padding: 40px;">
+    <div class="col-12">
+        <p class="description">{{product.description|linebreaks}}</p>
+    </div>
+</div>
+
+<form method="POST" action="{% url 'upvote' product.id %}" id="hidden_form">
+    {% csrf_token %}
+    <input type="hidden">
+</form>
+
+<style type="text/css">
+    p {
+        font-family: monospace;
+        font-weight: bold;
+        font-size: large;
+    }
+</style>
+
+<script>
+    $(document).ready(function() {
+        $('#vote_button').click(function() {
+            $('#hidden_form').submit(function() {
+                $.ajax({
+                    type: 'POST',
+                    url:  "{% url 'upvote' product.id %}",
+                    data: $('#hidden_form').serialize(), 
+                    success: function() {
+                        alert('hello')
+                    }
+                })
+            })
+        })
+    })
+</script>
+
+{% endblock %}
