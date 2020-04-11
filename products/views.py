@@ -22,7 +22,7 @@ def create(request):
 
         product.save()
         
-        return redirect('/product/' + str(product.id))
+        return redirect('/products/' + str(product.id))
 
     return render(request, 'products/create.html')
 
