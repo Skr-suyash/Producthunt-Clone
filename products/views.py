@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponse
 from django.contrib.auth.decorators import login_required
 from .models import Product
 from django.utils import timezone
@@ -41,5 +41,6 @@ def upvote(request, product_id):
         product = get_object_or_404(Product, pk=product_id)
         product.total_votes += 1
         product.save()
-        return redirect('/products/' + str(product_id))
+        # return redirect('/products/' + str(product_id))
+        return HttpResponse()
 

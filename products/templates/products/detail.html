@@ -39,11 +39,12 @@
     </div>
 </div>
 
-<form method="POST" action="{% url 'upvote' product.id %}" id="hidden_form">
+<form  id="hidden_form">
     {% csrf_token %}
     <input type="hidden">
 </form>
 
+<!-- Some CSS Stying -->
 <style type="text/css">
     p {
         font-family: monospace;
@@ -52,21 +53,29 @@
     }
 </style>
 
-<script>
-    $(document).ready(function() {
-        $('#vote_button').click(function() {
-            $('#hidden_form').submit(function() {
-                $.ajax({
-                    type: 'POST',
-                    url:  "{% url 'upvote' product.id %}",
-                    data: $('#hidden_form').serialize(), 
-                    success: function() {
-                        alert('hello')
-                    }
-                })
-            })
-        })
-    })
+
+<!-- Handle real-time upvoting -->
+<script> 
+    $(document).ready(function($){
+    $('#vote_button').click(function(e){
+        e.preventDefault()
+        //if your upvote has class arrow?
+        $.ajax({
+           type: "POST",
+           url: "{% url 'upvote' product.id %}",
+           data: {},
+           headers: {'X-CSRFToken': '{{ csrf_token }}'},
+           success: function (output) { //do something with returned data
+
+                var total = "{{product.total_votes}}";
+                document.getElementById('vote_span').textContent = Number(total) + 1
+                console.log('{{product.total_votes}}')
+                document.getElementById('vote_button').disabled = true;
+            }
+        });
+    });
+
+})
 </script>
 
 {% endblock %}
