@@ -8,7 +8,7 @@
 
 {% block body %}
 
-{% for product in products.all %}
+{% for product in products.all reversed %}
 <div class="container">
 <div class="row product_row" onclick="window.location = '{% url 'detail' product.id %}';">
     <div class="col-2"> 
