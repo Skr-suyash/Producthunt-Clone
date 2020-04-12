@@ -16,7 +16,7 @@ class Product(models.Model):
         return self.title
 
     def summary(self):
-        return self.description[:100]
+        return self.description[:300]
 
     def pub_date_pretty(self):
         return self.pub_date.strftime('%b %e %Y')

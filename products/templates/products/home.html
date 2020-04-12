@@ -1,5 +1,35 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
+{% block title %} Producthunt {% endblock %}
+
+{% block custom_css %} <link href="{% static 'css/home.css' %}" rel="stylesheet">  {% endblock %}
+
 {% block body %}
-    <h1>Hello</h1>
+
+{% for product in products.all %}
+<div class="container">
+<div class="row product_row" onclick="window.location = '{% url 'detail' product.id %}';">
+    <div class="col-2"> 
+        <img src="{{product.icon.url}}" class="img-fluid rounded image">
+    </div>
+    <div class="col-8">
+        <h4 class="display-5">{{product.title}}</h1>
+        <p>{{product.summary}}</p>
+    </div>
+    <div class="col-2 my-auto" style="text-align: center;">
+        <button id="vote_button" class="btn btn-danger" style="width: 100%; margin-bottom: 40px;"><span class="fa fa-thumbs-up"></span>  Upvotes <span id="vote_span" style="margin-left: 15px; font-weight: 800;">{{product.total_votes}}</span></button>
+    </div>
+</div>
+</div>
+{% endfor %}
+
+
+<form  id="hidden_form">
+    {% csrf_token %}
+    <input type="hidden">
+</form>
+
+
 {% endblock %}

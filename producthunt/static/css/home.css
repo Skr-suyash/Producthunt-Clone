@@ -1,0 +1,20 @@
+body {
+    margin: 0;
+}
+
+.product_row{
+    padding: 8px;
+    background-color: rgb(235, 235, 232);
+    margin: 12px;
+    max-width: 100%;
+    cursor: pointer;
+}
+
+.image {
+    height: 150px;
+    width: 150px;
+}
+
+.upvote {
+    width: 90%;
+}
