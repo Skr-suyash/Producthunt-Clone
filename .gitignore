@@ -13,4 +13,10 @@ db.sqlite3-journal
 /media
 /static
 /images
-**/.vscode/
+
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
